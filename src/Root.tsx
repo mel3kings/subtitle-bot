@@ -1,5 +1,6 @@
 import {Composition} from 'remotion';
 import {HelloWorld, myCompSchema} from './HelloWorld';
+import {getVideoMetadata} from '@remotion/media-utils';
 
 export const RemotionRoot: React.FC = () => {
 	const isShortForm = false;
@@ -11,7 +12,7 @@ export const RemotionRoot: React.FC = () => {
 			<Composition
 				id="HelloWorld"
 				component={HelloWorld}
-				durationInFrames={2150}
+				durationInFrames={5150}
 				fps={30}
 				width={width}
 				height={height}

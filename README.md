@@ -1,6 +1,6 @@
 # Commands:
 
-`whisper "public/sample.mp4" --model tiny.en`
+`whisper "public/sample.mp4" --model tiny.en --output-dir ./public --max_words_per_line 10 --word_timestamps True`
 
 ## Commands
 
