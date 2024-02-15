@@ -13,7 +13,7 @@ Hi everyone
 
 3
 00:00:29,700 --> 00:00:34,700
-Welcome to our channel. You can call me A and the husband is now.
+Welcome to our channel. You can call me Aey and the husband is Mel.
 
 4
 00:00:34,700 --> 00:00:41,700
@@ -69,18 +69,12 @@ So be patient, be kind to yourself and enjoy the ride.
 
 `;
 
-	// Parse subtitle file content
 	const subtitles = new Parser();
 	const array = subtitles.fromSrt(srt);
-	// Find the text to render based on current frame
+
 	const textToRender = array.find(
 		(text) => frame >= text.startSeconds * 30 && frame <= text.endSeconds * 30 // Assuming frame rate is 30 frames per second
 	);
-
-	// // Find the active subtitle for the current frame
-	// const activeSubtitle = subtitles.find(
-	// 	(subtitle) => frame >= subtitle.start && frame <= subtitle.end
-	// );
 
 	return (
 		<div>
@@ -91,7 +85,7 @@ So be patient, be kind to yourself and enjoy the ride.
 					{JSON.stringify(array)} + {frame}
 				</div>
 			)} */}
-			<Title titleText={textToRender?.text || ''} titleColor={'#ff0000'} />
+			<Title titleText={textToRender?.text || ''} titleColor={'#ffffff'} />
 			{/* <div> {textToRender?.text}</div> */}
 		</div>
 	);

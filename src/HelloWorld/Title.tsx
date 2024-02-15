@@ -1,6 +1,8 @@
 import React from 'react';
 import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {FONT_FAMILY} from './constants';
+import {loadFont} from '@remotion/google-fonts/Anton';
+const {fontFamily} = loadFont(); // "Titan One"
 
 const title: React.CSSProperties = {
 	fontFamily: FONT_FAMILY,
@@ -8,8 +10,14 @@ const title: React.CSSProperties = {
 	fontSize: 100,
 	textAlign: 'center',
 	position: 'absolute',
-	bottom: 160,
-	width: '100%',
+	bottom: 0,
+	left: 0,
+	right: 0,
+	textShadow: '0 0 10px black, 0 0 10px black, 0 0 10px black',
+};
+
+const containerStyle: React.CSSProperties = {
+	padding: '0 50px', // Adjust the padding value as needed
 };
 
 const word: React.CSSProperties = {
@@ -28,31 +36,33 @@ export const Title: React.FC<{
 	const words = titleText.split(' ');
 
 	return (
-		<h1 style={title}>
-			{words.map((t, i) => {
-				const delay = i * 5;
+		<div style={containerStyle}>
+			<h1 style={title}>
+				{words.map((t, i) => {
+					const delay = i * 5;
 
-				const scale = spring({
-					fps: videoConfig.fps,
-					frame: frame - delay,
-					config: {
-						damping: 200,
-					},
-				});
+					const scale = spring({
+						fps: videoConfig.fps,
+						frame: frame - delay,
+						config: {
+							damping: 200,
+						},
+					});
 
-				return (
-					<span
-						key={t}
-						style={{
-							...word,
-							color: titleColor,
-							transform: `scale(${scale})`,
-						}}
-					>
-						{t}
-					</span>
-				);
-			})}
-		</h1>
+					return (
+						<span
+							key={t}
+							style={{
+								...word,
+								color: titleColor,
+								transform: `scale(${scale})`,
+							}}
+						>
+							{t}
+						</span>
+					);
+				})}
+			</h1>
+		</div>
 	);
 };
