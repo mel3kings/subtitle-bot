@@ -40,6 +40,8 @@ const Subtitle: React.FC<z.infer<typeof subtitleProps>> = ({isShortForm}) => {
 	const textToRender = array.find(
 		(text) => frame >= text.startSeconds * 30 && frame <= text.endSeconds * 30 // Assuming frame rate is 30 frames per second
 	);
+	console.log(array, frame);
+	console.log('Text TO RENDER', textToRender?.text);
 
 	return (
 		<div>

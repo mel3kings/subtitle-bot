@@ -7,10 +7,14 @@ const {fontFamily} = loadFont(); // "Titan One"
 const longForm: React.CSSProperties = {
 	fontFamily: FONT_FAMILY,
 	fontWeight: 'bold',
-	fontSize: 96,
+	fontSize: 72,
 	textAlign: 'center',
 	position: 'absolute',
-	bottom: 0,
+	bottom: 100,
+	left: 0,
+	right: 0,
+	margin: '0 auto',
+	padding: '0 auto',
 	textShadow: '0 0 10px black, 0 0 10px black, 0 0 10px black',
 };
 
@@ -40,10 +44,8 @@ export const Title: React.FC<{
 	titleColor: string;
 	isShortForm: boolean;
 }> = ({titleText, titleColor, isShortForm}) => {
-	const videoConfig = useVideoConfig();
 	const frame = useCurrentFrame();
-
-	const words = titleText.split(' ');
+	const words = titleText.split(' ').filter((word) => word.trim() !== '');
 
 	return (
 		<div style={containerStyle}>
@@ -51,10 +53,10 @@ export const Title: React.FC<{
 				{words.map((t, i) => {
 					const delay = i * 5;
 					const scale = spring({
-						fps: videoConfig.fps,
+						fps: 30,
 						frame: frame - delay,
 						config: {
-							damping: 200,
+							damping: 400,
 						},
 					});
 
