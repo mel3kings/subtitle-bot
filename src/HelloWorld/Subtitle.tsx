@@ -2,8 +2,13 @@ import React from 'react';
 import {useCurrentFrame} from 'remotion';
 import Parser from 'srt-parser-2';
 import {Title} from './Title';
+import {z} from 'zod';
 
-const Subtitle: React.FC = () => {
+export const subtitleProps = z.object({
+	isShortForm: z.boolean(),
+});
+
+const Subtitle: React.FC<z.infer<typeof subtitleProps>> = ({isShortForm}) => {
 	const frame = useCurrentFrame();
 
 	let srt = `
@@ -75,10 +80,14 @@ So be patient, be kind to yourself and enjoy the ride.
 	const textToRender = array.find(
 		(text) => frame >= text.startSeconds * 30 && frame <= text.endSeconds * 30 // Assuming frame rate is 30 frames per second
 	);
-	console.log(textToRender);
+
 	return (
 		<div>
-			<Title titleText={textToRender?.text || ''} titleColor={'#ffffff'} />
+			<Title
+				titleText={textToRender?.text || ''}
+				titleColor={'#ffffff'}
+				isShortForm={isShortForm}
+			/>
 		</div>
 	);
 };

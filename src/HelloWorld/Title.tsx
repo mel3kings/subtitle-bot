@@ -4,10 +4,10 @@ import {FONT_FAMILY} from './constants';
 import {loadFont} from '@remotion/google-fonts/Anton';
 const {fontFamily} = loadFont(); // "Titan One"
 
-const title: React.CSSProperties = {
+const longForm: React.CSSProperties = {
 	fontFamily: FONT_FAMILY,
 	fontWeight: 'bold',
-	fontSize: 95,
+	fontSize: 96,
 	textAlign: 'center',
 	position: 'absolute',
 	bottom: 0,
@@ -17,12 +17,11 @@ const title: React.CSSProperties = {
 const shorts: React.CSSProperties = {
 	fontFamily: FONT_FAMILY,
 	fontWeight: 'bold',
-	fontSize: 72,
+	fontSize: 75,
 	textAlign: 'center',
 	position: 'absolute',
-	bottom: 0,
-	left: '50%',
-	transform: 'translateX(-50%)',
+	bottom: 300,
+
 	textShadow: '0 0 10px black, 0 0 10px black, 0 0 10px black',
 };
 
@@ -39,7 +38,8 @@ const word: React.CSSProperties = {
 export const Title: React.FC<{
 	titleText: string;
 	titleColor: string;
-}> = ({titleText, titleColor}) => {
+	isShortForm: boolean;
+}> = ({titleText, titleColor, isShortForm}) => {
 	const videoConfig = useVideoConfig();
 	const frame = useCurrentFrame();
 
@@ -47,7 +47,7 @@ export const Title: React.FC<{
 
 	return (
 		<div style={containerStyle}>
-			<h1 style={title}>
+			<h1 style={isShortForm ? shorts : longForm}>
 				{words.map((t, i) => {
 					const delay = i * 5;
 					const scale = spring({

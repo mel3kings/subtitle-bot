@@ -2,8 +2,7 @@ import {Composition} from 'remotion';
 import {HelloWorld, myCompSchema} from './HelloWorld';
 
 export const RemotionRoot: React.FC = () => {
-	const isShortForm = true; // Set this to true or false based on your requirement
-
+	const isShortForm = false;
 	const width = isShortForm ? 1080 : 1920;
 	const height = isShortForm ? 1920 : 1080;
 

@@ -1,7 +1,6 @@
 import {OffthreadVideo, staticFile} from 'remotion';
 import {AbsoluteFill} from 'remotion';
 import {z} from 'zod';
-import {zColor} from '@remotion/zod-types';
 import Subtitle from './HelloWorld/Subtitle';
 
 export const myCompSchema = z.object({
@@ -13,7 +12,6 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 	isShortForm,
 	videoName,
 }) => {
-	// Conditionally render based on isShortForm prop
 	if (isShortForm) {
 		return (
 			<AbsoluteFill style={{backgroundColor: 'white'}}>
@@ -24,7 +22,7 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 							width: '100%',
 							height: '100%',
 							overflow: 'hidden',
-							paddingTop: '177.77%', // This corresponds to a 9:16 aspect ratio (height:width = 16:9)
+							paddingTop: '177.77%',
 						}}
 					>
 						<div
@@ -41,14 +39,14 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 								style={{
 									width: '100%',
 									height: '100%',
-									objectFit: 'cover', // Or adjust as necessary to maintain aspect ratio
+									objectFit: 'cover',
 								}}
 							/>
 						</div>
 					</div>
 				</AbsoluteFill>
 				<AbsoluteFill>
-					<Subtitle />
+					<Subtitle isShortForm={isShortForm} />
 				</AbsoluteFill>
 			</AbsoluteFill>
 		);
@@ -59,7 +57,7 @@ export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
 					<OffthreadVideo src={staticFile(videoName)} />;
 				</AbsoluteFill>
 				<AbsoluteFill>
-					<Subtitle />
+					<Subtitle isShortForm={isShortForm} />
 				</AbsoluteFill>
 			</AbsoluteFill>
 		);
