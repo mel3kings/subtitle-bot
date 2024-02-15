@@ -7,12 +7,22 @@ const {fontFamily} = loadFont(); // "Titan One"
 const title: React.CSSProperties = {
 	fontFamily: FONT_FAMILY,
 	fontWeight: 'bold',
-	fontSize: 100,
+	fontSize: 95,
 	textAlign: 'center',
 	position: 'absolute',
 	bottom: 0,
-	left: 0,
-	right: 0,
+	textShadow: '0 0 10px black, 0 0 10px black, 0 0 10px black',
+};
+
+const shorts: React.CSSProperties = {
+	fontFamily: FONT_FAMILY,
+	fontWeight: 'bold',
+	fontSize: 72,
+	textAlign: 'center',
+	position: 'absolute',
+	bottom: 0,
+	left: '50%',
+	transform: 'translateX(-50%)',
 	textShadow: '0 0 10px black, 0 0 10px black, 0 0 10px black',
 };
 
@@ -40,7 +50,6 @@ export const Title: React.FC<{
 			<h1 style={title}>
 				{words.map((t, i) => {
 					const delay = i * 5;
-
 					const scale = spring({
 						fps: videoConfig.fps,
 						frame: frame - delay,

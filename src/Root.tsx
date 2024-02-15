@@ -1,12 +1,12 @@
 import {Composition} from 'remotion';
 import {HelloWorld, myCompSchema} from './HelloWorld';
-import SubtitleFile from './sample.srt';
-import {Logo, myCompSchema2} from './HelloWorld/Logo';
-import {MyComp} from './HelloWorld/LocalVideo';
-
-// Each <Composition> is an entry in the sidebar!
 
 export const RemotionRoot: React.FC = () => {
+	const isShortForm = true; // Set this to true or false based on your requirement
+
+	const width = isShortForm ? 1080 : 1920;
+	const height = isShortForm ? 1920 : 1080;
+
 	return (
 		<>
 			<Composition
@@ -14,14 +14,12 @@ export const RemotionRoot: React.FC = () => {
 				component={HelloWorld}
 				durationInFrames={2150}
 				fps={30}
-				width={1920}
-				height={1080}
+				width={width}
+				height={height}
 				schema={myCompSchema}
 				defaultProps={{
-					titleText: '',
-					titleColor: '#ff0000',
-					logoColor1: '#91EAE4',
-					logoColor2: '#86A8E7',
+					videoName: 'sample.mp4',
+					isShortForm: isShortForm,
 				}}
 			/>
 		</>

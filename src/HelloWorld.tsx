@@ -1,38 +1,67 @@
-import {OffthreadVideo, spring, staticFile} from 'remotion';
-import {
-	AbsoluteFill,
-	interpolate,
-	useCurrentFrame,
-	useVideoConfig,
-} from 'remotion';
-import {Logo} from './HelloWorld/Logo';
-
+import {OffthreadVideo, staticFile} from 'remotion';
+import {AbsoluteFill} from 'remotion';
 import {z} from 'zod';
 import {zColor} from '@remotion/zod-types';
 import Subtitle from './HelloWorld/Subtitle';
 
 export const myCompSchema = z.object({
-	titleText: z.string(),
-	titleColor: zColor(),
-	logoColor1: zColor(),
-	logoColor2: zColor(),
+	videoName: z.string(),
+	isShortForm: z.boolean(),
 });
 
 export const HelloWorld: React.FC<z.infer<typeof myCompSchema>> = ({
-	titleText: propOne,
-	titleColor: propTwo,
-	logoColor1,
-	logoColor2,
+	isShortForm,
+	videoName,
 }) => {
-	// A <AbsoluteFill> is just a absolutely positioned <div>!
-	return (
-		<AbsoluteFill style={{backgroundColor: 'white'}}>
-			<AbsoluteFill>
-				<OffthreadVideo src={staticFile('sample.mp4')} />;
+	// Conditionally render based on isShortForm prop
+	if (isShortForm) {
+		return (
+			<AbsoluteFill style={{backgroundColor: 'white'}}>
+				<AbsoluteFill>
+					<div
+						style={{
+							position: 'relative',
+							width: '100%',
+							height: '100%',
+							overflow: 'hidden',
+							paddingTop: '177.77%', // This corresponds to a 9:16 aspect ratio (height:width = 16:9)
+						}}
+					>
+						<div
+							style={{
+								position: 'absolute',
+								top: '0',
+								left: '0',
+								width: '100%',
+								height: '100%',
+							}}
+						>
+							<OffthreadVideo
+								src={staticFile(videoName)}
+								style={{
+									width: '100%',
+									height: '100%',
+									objectFit: 'cover', // Or adjust as necessary to maintain aspect ratio
+								}}
+							/>
+						</div>
+					</div>
+				</AbsoluteFill>
+				<AbsoluteFill>
+					<Subtitle />
+				</AbsoluteFill>
 			</AbsoluteFill>
-			<AbsoluteFill>
-				<Subtitle />
+		);
+	} else {
+		return (
+			<AbsoluteFill style={{backgroundColor: 'white'}}>
+				<AbsoluteFill>
+					<OffthreadVideo src={staticFile(videoName)} />;
+				</AbsoluteFill>
+				<AbsoluteFill>
+					<Subtitle />
+				</AbsoluteFill>
 			</AbsoluteFill>
-		</AbsoluteFill>
-	);
+		);
+	}
 };

@@ -75,18 +75,10 @@ So be patient, be kind to yourself and enjoy the ride.
 	const textToRender = array.find(
 		(text) => frame >= text.startSeconds * 30 && frame <= text.endSeconds * 30 // Assuming frame rate is 30 frames per second
 	);
-
+	console.log(textToRender);
 	return (
 		<div>
-			{/* <div> Subtitle Here:</div> */}
-			{/* {array && (
-				<div>
-					ss
-					{JSON.stringify(array)} + {frame}
-				</div>
-			)} */}
 			<Title titleText={textToRender?.text || ''} titleColor={'#ffffff'} />
-			{/* <div> {textToRender?.text}</div> */}
 		</div>
 	);
 };
