@@ -37,19 +37,21 @@ const Subtitle: React.FC<z.infer<typeof subtitleProps>> = ({isShortForm}) => {
 	const subtitles = new Parser();
 	const array = subtitles.fromSrt(srt);
 
+	const timeInSeconds = frame / 30; // Assuming frame rate is 30 frames per second
 	const textToRender = array.find(
-		(text) => frame >= text.startSeconds * 30 && frame <= text.endSeconds * 30 // Assuming frame rate is 30 frames per second
+		(text) =>
+			timeInSeconds >= text.startSeconds && timeInSeconds <= text.endSeconds
 	);
-	console.log(array, frame);
-	console.log('Text TO RENDER', textToRender?.text);
 
 	return (
 		<div>
-			<Title
-				titleText={textToRender?.text || ''}
-				titleColor={'#ffffff'}
-				isShortForm={isShortForm}
-			/>
+			{textToRender && (
+				<Title
+					titleText={textToRender.text || ''}
+					titleColor={'#ffffff'}
+					isShortForm={isShortForm}
+				/>
+			)}
 		</div>
 	);
 };

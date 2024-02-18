@@ -21,10 +21,10 @@ const longForm: React.CSSProperties = {
 const shorts: React.CSSProperties = {
 	fontFamily: FONT_FAMILY,
 	fontWeight: 'bold',
-	fontSize: 75,
+	fontSize: 85,
 	textAlign: 'center',
 	position: 'absolute',
-	bottom: 300,
+	bottom: 270,
 
 	textShadow: '0 0 10px black, 0 0 10px black, 0 0 10px black',
 };
@@ -62,7 +62,7 @@ export const Title: React.FC<{
 
 					return (
 						<span
-							key={t}
+							key={`${t}-${i}`}
 							style={{
 								...word,
 								color: titleColor,

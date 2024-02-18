@@ -8,7 +8,7 @@
 		"build": "remotion render HelloWorld out/video.mp4",
 		"upgrade": "remotion upgrade",
 		"test": "eslint src --ext ts,tsx,js,jsx && tsc",
-		"sub": "whisper 'public/sample.mp4' --model small.en --output_dir public --max_words_per_line 10 --word_timestamps True"
+		"sub": "whisper 'public/sample.mp4' --model small.en --output_dir public --max_words_per_line 10 --word_timestamps True && npm run dev"
 	},
 	"repository": {},
 	"license": "UNLICENSED",
